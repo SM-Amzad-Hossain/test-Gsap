@@ -30,6 +30,23 @@ npm run build    # production build → dist/
 npm run preview  # serve the production build
 ```
 
+## Plain HTML/CSS/JS version (no build step)
+
+`standalone/` contains the same site as three plain files — **index.html,
+style.css, main.js** — with GSAP and Three.js loaded from the jsDelivr CDN:
+
+- **Double-click `standalone/index.html`** to open it directly in a browser
+- or serve the folder with any static host / `python3 -m http.server`
+- no `npm install`, no bundler — only an internet connection (for the CDNs)
+
+The page degrades gracefully offline: if Three.js can't load, the DOM
+experience still works.
+
+```bash
+npm run build    # production build → dist/
+npm run preview  # serve the production build
+```
+
 ## Stack
 
 | Tool | Purpose |
