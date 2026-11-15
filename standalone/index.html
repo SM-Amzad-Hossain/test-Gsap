@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ORCHARD — Fruits that feel alive</title>
+    <meta
+      name="description"
+      content="A 3D scroll-animated product page for fresh fruit, built with GSAP ScrollTrigger and Three.js."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍊</text></svg>"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Loader -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader-inner">
+        <span class="loader-logo">ORCHARD<span class="loader-dot">.</span></span>
+        <span class="loader-hint">picking your fruit…</span>
+      </div>
+    </div>
+
+    <!-- Scroll progress -->
+    <div class="progress" aria-hidden="true"></div>
+
+    <!-- Ambient background blobs (behind the 3D canvas) -->
+    <div class="blob blob-a" aria-hidden="true"></div>
+    <div class="blob blob-b" aria-hidden="true"></div>
+    <div class="blob blob-c" aria-hidden="true"></div>
+
+    <!-- WebGL canvas -->
+    <canvas id="webgl" aria-hidden="true"></canvas>
+
+    <!-- Navigation -->
+    <header class="nav">
+      <a class="nav-logo" href="#home">ORCHARD<span class="nav-logo-dot">.</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#orange">Citrus</a>
+        <a href="#berry">Berries</a>
+        <a href="#box">Bundle</a>
+      </nav>
+      <button class="nav-cart" type="button" data-add aria-label="Cart">
+        🛒&nbsp;<span id="cart-count">2</span>
+      </button>
+    </header>
+
+    <!-- Section dots -->
+    <nav class="dots" aria-label="Section navigation">
+      <a class="dot is-active" href="#home" aria-label="Intro"></a>
+      <a class="dot" href="#orange" aria-label="Blood orange"></a>
+      <a class="dot" href="#berry" aria-label="Strawberries"></a>
+      <a class="dot" href="#kiwi" aria-label="Golden kiwi"></a>
+      <a class="dot" href="#box" aria-label="The Alive Box"></a>
+    </nav>
+
+    <main>
+      <!-- 0 · HERO -->
+      <section class="section hero" id="home">
+        <div class="section-index" aria-hidden="true">00</div>
+        <div class="section-content hero-content">
+          <span class="hero-badge">New — 3D scroll experience</span>
+          <h1 class="hero-title">Fruits that feel <span class="grad">alive.</span></h1>
+          <p class="hero-sub">
+            Hand-picked produce rendered in real&nbsp;3D and moved by your scroll.
+            Keep going — they wake up as you do.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#orange">Explore the harvest&nbsp;→</a>
+            <a class="btn btn-ghost" href="#box">See the bundle</a>
+          </div>
+          <div class="scroll-hint" aria-hidden="true">
+            <span class="scroll-hint-line"></span>
+            scroll to taste
+          </div>
+        </div>
+      </section>
+
+      <!-- 1 · ORANGE -->
+      <section class="section section--left product" id="orange" style="--accent: var(--orange)">
+        <div class="section-index" aria-hidden="true">01</div>
+        <div class="section-content card">
+          <span class="eyebrow">01 — Citrus</span>
+          <h2>Sicilian Blood&nbsp;Orange</h2>
+          <p class="lede">
+            Sun-drenched on volcanic soil, picked at 6&nbsp;a.m. and on your table by
+            noon. Packed with vitamin&nbsp;C and a sweetness that borders on
+            rebellion.
+          </p>
+          <ul class="stats">
+            <li>72&thinsp;mg vitamin&nbsp;C</li>
+            <li>4.9★ from 212 reviews</li>
+            <li>0 added sugar</li>
+          </ul>
+          <div class="price-row">
+            <span class="price">$4.90</span>
+            <span class="price-note">per piece · picked today</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary" type="button" data-add>Add to cart</button>
+            <a class="btn btn-ghost" href="#berry">Next: strawberries</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2 · STRAWBERRY -->
+      <section class="section section--right product" id="berry" style="--accent: var(--berry)">
+        <div class="section-index" aria-hidden="true">02</div>
+        <div class="section-content card">
+          <span class="eyebrow">02 — Berry</span>
+          <h2>Alpine Strawberries</h2>
+          <p class="lede">
+            Grown at 1,200&nbsp;m where cold nights concentrate the aroma. Tiny,
+            fierce, and loaded with antioxidants — one bite and the mountains show
+            up.
+          </p>
+          <ul class="stats">
+            <li>2× antioxidants</li>
+            <li>38&thinsp;kcal / 100&thinsp;g</li>
+            <li>hand-picked</li>
+          </ul>
+          <div class="price-row">
+            <span class="price">$6.40</span>
+            <span class="price-note">per punnet · 12–14 berries</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary" type="button" data-add>Add to cart</button>
+            <a class="btn btn-ghost" href="#kiwi">Next: golden kiwi</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 · KIWI -->
+      <section class="section section--left product" id="kiwi" style="--accent: var(--kiwi)">
+        <div class="section-index" aria-hidden="true">03</div>
+        <div class="section-content card">
+          <span class="eyebrow">03 — Tropical</span>
+          <h2>Golden Kiwi</h2>
+          <p class="lede">
+            Sun-gold flesh with a tropical twist — sweeter than green, with enough
+            vitamin&nbsp;C to outshine the entire citrus aisle. Yes, including its
+            neighbour above.
+          </p>
+          <ul class="stats">
+            <li>160% daily vit&nbsp;C</li>
+            <li>5&thinsp;g fibre</li>
+            <li>slow-release energy</li>
+          </ul>
+          <div class="price-row">
+            <span class="price">$5.20</span>
+            <span class="price-note">pack of 4 · net-zero shipping</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary" type="button" data-add>Add to cart</button>
+            <a class="btn btn-ghost" href="#box">Next: the bundle</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 · BUNDLE -->
+      <section class="section section--right product" id="box" style="--accent: var(--berry)">
+        <div class="section-index" aria-hidden="true">04</div>
+        <div class="section-content card card--cta">
+          <span class="eyebrow">04 — The bundle</span>
+          <h2>The Alive Box</h2>
+          <p class="lede">
+            All three, harvested together, delivered in one carbon-neutral crate.
+            The whole scroll, in real life.
+          </p>
+          <ul class="stats">
+            <li>free delivery</li>
+            <li>ships in 24&thinsp;h</li>
+            <li>plastic-free</li>
+          </ul>
+          <div class="price-row">
+            <span class="price">$14.90</span>
+            <s class="price-was">$16.50</s>
+            <span class="price-badge">save 10%</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-primary btn-big" type="button" data-add>
+              Add the box — free delivery
+            </button>
+          </div>
+          <p class="fine-print">Harvested to order · cancel anytime · 100% happy-fruit guarantee</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Decorative marquee -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>FRESH — ALIVE — RIPE — JUICY — CRUNCHY — ORCHARD — </span>
+        <span>FRESH — ALIVE — RIPE — JUICY — CRUNCHY — ORCHARD — </span>
+        <span>FRESH — ALIVE — RIPE — JUICY — CRUNCHY — ORCHARD — </span>
+        <span>FRESH — ALIVE — RIPE — JUICY — CRUNCHY — ORCHARD — </span>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>© 2026 ORCHARD — grown in the browser with GSAP + Three.js</span>
+      <span class="footer-links">
+        <a href="#home">Back to top</a>
+      </span>
+    </footer>
+
+    <!-- Plain HTML/CSS/JS build — no npm, no bundler.
+         GSAP loads as UMD globals; Three.js loads as ES modules via import map.
+         The bridge below resolves Three.js, then runs the classic main.js. -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.171.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module">
+      // Bridge: load Three.js ESM deps, expose them as globals, then run main.js.
+      // If Three.js fails (old browser, offline), main.js still runs with the
+      // DOM-only fallback so the page never stays stuck on the loader.
+      (async () => {
+        try {
+          const THREE = await import('three');
+          const { RoomEnvironment } = await import(
+            'three/addons/environments/RoomEnvironment.js'
+          );
+          window.THREE = THREE;
+          window.RoomEnvironment = RoomEnvironment;
+        } catch (err) {
+          console.warn('Three.js failed to load — DOM-only fallback:', err);
+          window.THREE = null;
+          window.RoomEnvironment = null;
+        } finally {
+          const app = document.createElement('script');
+          app.src = 'main.js';
+          document.body.appendChild(app);
+        }
+      })();
+    </script>
+  </body>
+</html>
