@@ -1,0 +1,19 @@
+{
+  "name": "test-gsap",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "ORCHARD — 3D scroll-animated fruit product page with GSAP & Three.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "three": "^0.171.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
